@@ -3,8 +3,8 @@ function processData(input) {
     const numQueries = queries.shift();
     const heap = [];
 
-    queries.forEach(query => {
-        console.log('=========== new query ===========');
+    queries.forEach((query, round) => {
+        console.log('=========== new query, round: ' + round + ' ===========');
         if (query === '3') {
             console.log(heap[0]);
             return;
@@ -94,10 +94,12 @@ function siftDown(heap, number, nodeIndex) {
     if (leftChild < rightChild) {
         console.log('leftChild < rightChild and heap now (before continuing sifting down: ', heap)
         heap[nodeIndex] = leftChild;
+        heap[leftChildIndex] = number;
         siftDown(heap, number, leftChildIndex);
     } else {
         console.log('leftChild >= rightChild and heap now (before continuing sifting down: ', heap)
         heap[nodeIndex] = rightChild;
+        heap[rightChildIndex] = number;
         siftDown(heap, number, rightChildIndex);
     }
 }

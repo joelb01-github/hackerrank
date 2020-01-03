@@ -64,9 +64,11 @@ function siftDown(heap, number, nodeIndex) {
 
     if (leftChild < rightChild) {
         heap[nodeIndex] = leftChild;
+        heap[leftChildIndex] = number;
         siftDown(heap, number, leftChildIndex);
     } else {
         heap[nodeIndex] = rightChild;
+        heap[rightChildIndex] = number;
         siftDown(heap, number, rightChildIndex);
     }
 }
