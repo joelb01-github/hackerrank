@@ -55,8 +55,7 @@ function alternate(s) {
     list.forEach(baseLetter => {
         if (lettersMapping[baseLetter] === 1) return;
 
-        const tempMapping = {};
-        // {letter: {tempScore: int, lastLetter: string}
+        const tempMapping = {}; // {letter: {tempScore, lastLetter}
 
         validLetters.forEach(letter => {
             if (letter !== baseLetter) {

@@ -7,10 +7,8 @@ function alternate(s) {
     
     if (list.length < 2) return 0;
 
-    const lettersMapping = {}; 
-    // {letter: int} -- 1 => banned
-    const pairsMapping = {}; 
-    // {letter1_letter2: {letter: int}} -- letter1 < letter2 and 1 => banned
+    const lettersMapping = {}; // {letter} -- 1 => banned
+    const pairsMapping = {};  // {letter1_letter2: {letter}} -- letter1 < letter2 and 1 => banned
     let score = 0;
 
     list.forEach((letter, index) => {
@@ -26,17 +24,12 @@ function alternate(s) {
         lettersMapping[letter] = 0;
     });
 
-    console.log('lettersMapping',lettersMapping);
-
     const validLetters = Object.keys(lettersMapping).filter(letter => lettersMapping[letter] === 0);
-
-    console.log('validLetters',validLetters);
 
     list.forEach(baseLetter => {
         if (lettersMapping[baseLetter] === 1) return;
 
-        const tempMapping = {};
-        // {letter: {tempScore: int, lastLetter: string}
+        const tempMapping = {}; // {letter: {tempScore, lastLetter}}
 
         validLetters.forEach(letter => {
             if (letter !== baseLetter) {
@@ -92,8 +85,6 @@ function alternate(s) {
             tempMapping[letter].tempScore++;
             return true;
         });
-
-        console.log('tempMapping for ' + baseLetter + ' -- after',tempMapping);
 
         if (lettersMapping[baseLetter] === 1) return;
 
